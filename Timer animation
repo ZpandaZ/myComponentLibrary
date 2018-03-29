@@ -1,0 +1,42 @@
+//计时器内圆绘制
+drawCircle: function () {
+  clearInterval(varName);
+  function drawArc(s, e) {
+    ctx.setFillStyle('white');
+    ctx.clearRect(0, 0, 100, 100);
+    ctx.draw();
+    var x = 50, y = 50, radius = 40;
+    ctx.setLineWidth(5);
+    ctx.setStrokeStyle('#d13e69');
+    ctx.setLineCap('round');
+    ctx.beginPath();
+    ctx.arc(x, y, radius, s, e, false);
+    ctx.stroke()
+    ctx.draw()
+  }
+  var step = 1, startAngle = 1.5 * Math.PI, endAngle = 0;
+  var animation_interval = 1000, n = 10;
+  var _this = this;
+  var ctx1 = ctx
+  var animation = function () {
+    console.log('animation')
+    if (step <= n) {
+      endAngle = step * 2 * Math.PI / n + 1.5 * Math.PI;
+      drawArc(startAngle, endAngle);
+      step++;
+    } else {
+      clearInterval(varName)
+    }
+  };
+  varName = setInterval(animation, animation_interval);
+},
+//计时器外圆
+initCircle:function(){
+  cxt_arc.setLineWidth(10);
+  cxt_arc.setStrokeStyle('#ffffff');
+  cxt_arc.setLineCap('round');
+  cxt_arc.beginPath();
+  cxt_arc.arc(50, 50, 40, 0, 2 * Math.PI, false);
+  cxt_arc.stroke();
+  cxt_arc.draw();
+}
